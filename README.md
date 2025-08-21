@@ -61,6 +61,14 @@ Treinar um **Transformer** (Keras/TensorFlow) para traduzir **Português → Ing
 
 ---
 
+## Minha experiência
+
+- **Teacher Forcing:** no treinamento, alimento o decoder com o **token correto anterior** (alvo deslocado), o que **acelera a convergência** e reduz a **propagação de erro**. Na inferência, o próximo token vem da **própria predição**; por isso, alinhar `y_in`/`y_out` e aplicar **máscaras** corretamente é crucial.
+
+- **Positional Encoding (senoidal):** adiciona **informação de posição** aos embeddings **sem novos parâmetros**, permitindo que a atenção considere **ordem**. `MAX_TOKENS` impacta custo/memória, pois a atenção cresce aproximadamente **O(n²)** com o tamanho da sequência.
+
+---
+
 ## Fui além
 - **Balanceei tempo × qualidade** de forma explícita (subset + épocas + tamanho do modelo) para obter **resultados úteis** em tempo **viável**.
 - Mantive a essência do Transformer do tutorial com **“knobs”** claros para novas rodadas de análise e comparação **GPU vs CPU**.
